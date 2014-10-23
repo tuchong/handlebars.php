@@ -256,7 +256,7 @@ class Context
         $value = null;
         if (($inside !== '0' && empty($inside)) || ($inside == 'this')) {
             return $variable;
-        } elseif (is_array($variable)) {
+        } elseif (is_array($variable) || $variable instanceof \ArrayAccess) {	// modfied by shen2, add "|| $variable instanceof \ArrayAccess"
             if (isset($variable[$inside]) || array_key_exists($inside, $variable)) {
                 return $variable[$inside];
             } elseif ($inside == "length") {
